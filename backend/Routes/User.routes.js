@@ -22,13 +22,36 @@ userRoute.post('/',
             await UserModel.create({
                 name, email, password, phoneNumber, address
             });
-            
-            res.json({sucess: true}).send("User registered successfully");
+
+            res.json({ success: true }).send("User registered successfully");
 
         } catch (error) {
             console.log("Error in userModel: ", error);
-            res.json({sucess: false, error})
-           
+            res.json({ success: false, error })
+
+        };
+    });
+
+
+userRoute.post('/loginuser',
+    async (req, res) => {
+        try {
+            const { email, password } = req.body;
+            let user = await UserModel.findOne({ email })
+
+            if (!user) {
+                return res.status(400).json({ success: false, error: "User not found" });
+            }
+
+            if (user.password !== password) {
+                return res.status(400).json({ success: false, error: "Provide correct credentials" });
+            }
+
+            res.json({ success: true }).send("User logged in successfully");
+
+        } catch (error) {
+            console.log("Error in userModel: ", error);
+            res.json({ success: false, error })
         };
     });
 
