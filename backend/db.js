@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const mongoURI = `mongodb+srv://sahilahamed813:sahil653t@cluster0.w1xfhoi.mongodb.net/food_delivery_cluster?retryWrites=true&w=majority&appName=Cluster0`
 
@@ -15,4 +15,4 @@ const connectToDatabase = async () => {
     
 }
 
-module.exports = connectToDatabase;
+export default connectToDatabase;
