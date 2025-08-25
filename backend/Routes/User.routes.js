@@ -1,6 +1,8 @@
 import express from 'express';
 import UserModel from '../models/user.models.js';
 import { body, validationResult } from 'express-validator';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const userRoute = express.Router();
 
@@ -17,13 +19,18 @@ userRoute.post('/',
             return res.status(400).json({ error: error.array() });
         }
 
+        const salt = await bcrypt.genSalt(10);
+        const securePassword = await bcrypt.hash(req.body.password, salt);
+
+        
+
         try {
             const { name, email, password, phoneNumber, address } = req.body;
             await UserModel.create({
-                name, email, password, phoneNumber, address
+                name, email, password: securePassword, phoneNumber, address
             });
 
-            res.json({ success: true }).send("User registered successfully");
+            res.json({ success: true });
 
         } catch (error) {
             console.log("Error in userModel: ", error);
