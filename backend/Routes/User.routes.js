@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const userRoute = express.Router();
+const JWT_SECRET = "ThisIsASecret";
 
 userRoute.post('/',
     //express validators
@@ -50,11 +51,21 @@ userRoute.post('/loginuser',
                 return res.status(400).json({ success: false, error: "User not found" });
             }
 
-            if (user.password !== password) {
+            const pwdCompare = await bcrypt.compare(password, user.password);
+
+            if (!pwdCompare) {
                 return res.status(400).json({ success: false, error: "Provide correct credentials" });
             }
 
-            res.json({ success: true }).send("User logged in successfully");
+            const data = {
+                userData:{
+                    id: user.id
+                }
+            }
+
+            const token = jwt.sign(data, JWT_SECRET);
+
+            res.json({ success: true, authToken: token });
 
         } catch (error) {
             console.log("Error in userModel: ", error);

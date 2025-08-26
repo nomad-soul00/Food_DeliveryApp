@@ -26,6 +26,7 @@ const Login = () => {
           };
 
           if(json.success){
+            localStorage.setItem('token', json.authToken)
             navigate("/");
           }
       }
