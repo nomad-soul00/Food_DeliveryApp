@@ -3,10 +3,13 @@ import React from 'react'
 const Card = ({name, img, description, options}) => {
 
     let priceOptions = Object.keys(options);
+    const handleAddtoCart = () =>{
+
+    }
 
   return (
     <div>
-       <div className="card mt-3" style={{ 'width': "18rem", "max-height": "370px" }}>
+       <div className="card mt-3" style={{ 'width': "18rem", "mmin-height": "370px" }}>
                 <img src={img} className="card-img-top" alt="..." style={{"height": "180px", "objectFit": "fill"}} />
                 <div className="card-body">
                     <h5 className="card-title">{name}</h5>
@@ -35,8 +38,9 @@ const Card = ({name, img, description, options}) => {
                         <div className='d-inline h-100 fs-5'>
                             Total Price
                         </div>
-
                     </div>
+                    <hr />
+                    <button type="button" class="btn btn-success justify-center ubuntu-regular" onClick={handleAddtoCart}>Add to Cart</button>
                 </div>
             </div>
     </div>
