@@ -4,12 +4,19 @@ import { createContext } from 'react';
 const CartStateContext = createContext();
 const CartDispatchContext = createContext();
 
-const reducer = (state, action)=>{
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD':
+      // console.log(action);
+      return [...state, {id: action.id, name: action.name, qty: action.qty, size: action.size, price: action.price}];
 
+    default:
+      console.log('Error in reducer')
+  }
 }
 
-const CartProvider = ({children}) => {
-    const [state, dispatch] = useReducer(reducer, []);
+const CartProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, []);
 
   return (
     <CartDispatchContext.Provider value={dispatch}>
@@ -22,5 +29,5 @@ const CartProvider = ({children}) => {
 
 export default CartProvider;
 
-export const useCart = ()=>{  useContext(CartStateContext)};
-export const useDispatchCart =()=> useContext(CartDispatchContext);
+export const useCart = () =>  useContext(CartStateContext) ;
+export const useDispatchCart = () => useContext(CartDispatchContext);
