@@ -80,9 +80,7 @@ function Home() {
                                         return (
                                             <div key={filteredItems._id} className='col-12 col-md-6 col-lg-3 mx-2'>
                                                 <Card
-                                                    name={filteredItems.name}
-                                                    img={filteredItems.img}
-                                                    description={filteredItems.description}
+                                                    foodItem = {filteredItems}
                                                     options={filteredItems.options[0]}
                                                 />
                                             </div>

@@ -1,6 +1,7 @@
 import React from 'react'
+import { useDispatchCart, useCart } from './ContextReducer';
 
-const Card = ({name, img, description, options}) => {
+const Card = ({foodItem, options}) => {
 
     let priceOptions = Object.keys(options);
     const handleAddtoCart = () =>{
@@ -10,10 +11,10 @@ const Card = ({name, img, description, options}) => {
   return (
     <div>
        <div className="card mt-3" style={{ 'width': "18rem", "mmin-height": "370px" }}>
-                <img src={img} className="card-img-top" alt="..." style={{"height": "180px", "objectFit": "fill"}} />
+                <img src={foodItem.img} className="card-img-top" alt="..." style={{"height": "180px", "objectFit": "fill"}} />
                 <div className="card-body">
-                    <h5 className="card-title">{name}</h5>
-                    <p className="card-text">{description.slice(0, 60)}  . .</p>
+                    <h5 className="card-title">{foodItem.name}</h5>
+                    <p className="card-text">{foodItem.description.slice(0, 60)}  . .</p>
                     <div className="container w-100">
                         <select className='m-2 h-100 bg-success rounded'>
                             {
