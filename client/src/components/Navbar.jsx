@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -47,9 +47,10 @@ const Navbar = () => {
                                     </div>
                                     :
                                     <>
-                                     <div className='btn  bg-white ubuntu-bold text-success mx-2'>
-                                        My Cart
-                                    </div>
+                                     <Link className='btn  bg-white ubuntu-bold text-success mx-2' to='/cart'>
+                                       My Cart
+                                        <span class="badge text-white rounded-5 mx-1 bg-success">2</span>
+                                    </Link>
                                     <div className='btn bg-white ubuntu-bold text-danger mx-2' onClick={handleLogout}>
                                         Logout
                                     </div>

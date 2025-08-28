@@ -4,6 +4,7 @@ import Home from './Screens/Home.jsx'
 import Login from './Screens/Login.jsx'
 import { Route, Routes, Link } from "react-router";
 import SignUp from './Screens/SignUp.jsx';
+import Cart from './Screens/Cart.jsx';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/cart' element={<Cart/>}/>
       </Routes>
     </div>
   )

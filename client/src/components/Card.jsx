@@ -12,9 +12,9 @@ const Card = ({ foodItem, options }) => {
     const handleAddtoCart = async () => {
         await dispatch({ type: 'ADD', id: foodItem._id, name: foodItem.name, qty, size, price: finalPrice })
     }
-    useEffect(() => {
-        console.log('Cart updated:', data);
-    }, [data]);
+    // useEffect(() => {
+    //     console.log('Cart updated:', data);
+    // }, [data]);
 
     let finalPrice = qty * parseInt(options[size]);
     return (
