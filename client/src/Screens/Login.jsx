@@ -27,6 +27,7 @@ const Login = () => {
 
           if(json.success){
             localStorage.setItem('token', json.authToken)
+            localStorage.setItem('userEmail', credentials.email)
             navigate("/");
           }
       }
