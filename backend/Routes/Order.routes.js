@@ -21,7 +21,12 @@ orderRouter.post('/orderData', async (req, res) => {
         }
     } else {
         try {
-            
+            await OrderModel.findOneAndUpdate({ email }, {
+                $push: { order_data: data }
+            }).then(() => {
+                res.json({ success: true })
+            })
+
         } catch (error) {
             res.send("Server Error: ", error.message)
         }
