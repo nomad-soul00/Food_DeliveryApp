@@ -24,8 +24,8 @@ const OVERLAY_STYLES = {
 }
 
 
-const modal = ({children, onClose}) => {
-    
+const Modal = ({children, onClose}) => {
+
  return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
@@ -38,4 +38,4 @@ const modal = ({children, onClose}) => {
   )
 }
 
-export default modal
+export default Modal

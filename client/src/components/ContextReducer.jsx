@@ -9,6 +9,21 @@ const reducer = (state, action) => {
     case 'ADD':
       // console.log(action);
       return [...state, {id: action.id, name: action.name, qty: action.qty, size: action.size, price: action.price}];
+    
+      case 'REMOVE':
+        let newState = [...state];
+        newState.splice(action.index, 1);
+        return newState;
+
+      case "UPDATE":
+            let arr = [...state]
+            arr.find((food, index) => {
+                if (food.id === action.id) {
+                    arr[index] = { ...food, qty: parseInt(action.qty) + parseInt(food.qty), price: action.price + food.price }
+                }
+                return arr
+            })
+            return arr
 
     default:
       console.log('Error in reducer')
@@ -29,5 +44,5 @@ const CartProvider = ({ children }) => {
 
 export default CartProvider;
 
-export const useCart = () =>  useContext(CartStateContext) ;
-export const useDispatchCart = () => useContext(CartDispatchContext);
+export const useCart = ()=>  useContext(CartStateContext) ;
+export const useDispatchCart = ()=> useContext(CartDispatchContext);

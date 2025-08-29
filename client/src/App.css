@@ -3,7 +3,9 @@
   text-align: center;
 }
 
-
+.pointer{
+  cursor: pointer;
+}
 
 .App-header {
   background-color: #282c34;

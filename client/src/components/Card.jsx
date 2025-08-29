@@ -10,7 +10,27 @@ const Card = ({ foodItem, options }) => {
     let [size, setSize] = useState(priceOptions[0]);
 
     const handleAddtoCart = async () => {
+
+        let food =[];
+        for(const item of data){
+            if(item.id === foodItem._id){
+                food=item;
+                break;
+            }
+        }
+        if(food.length !== 0){
+            if(food.size === size){
+                await dispatch({type: "UPDATE", id:foodItem._id, price: finalPrice, qty})
+                return
+            }
+            else if(food.size !== size){
+                await dispatch({ type: 'ADD', id: foodItem._id, name: foodItem.name, qty, size, price: finalPrice })
+                return
+            }
+            return
+        }
         await dispatch({ type: 'ADD', id: foodItem._id, name: foodItem.name, qty, size, price: finalPrice })
+
     }
     // useEffect(() => {
     //     console.log('Cart updated:', data);
